@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Cafetería Campus — Demo Cambio</title>
+  <style>
+    :root{
+      --bg:#f7f8fb; --fg:#0f172a; --brand:#2563eb; --muted:#64748b; --ok:#16a34a; --warn:#f59e0b; --danger:#b91c1c; --card:#ffffff; --border:#e5e7eb;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif;background:var(--bg);color:var(--fg);line-height:1.5}
+    .container{max-width:960px;margin:24px auto;padding:0 16px}
+    header{display:flex;align-items:center;justify-content:space-between;padding:16px 0;border-bottom:1px solid var(--border)}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:20px;letter-spacing:.2px}
+    .brand .dot{width:12px;height:12px;border-radius:50%;background:var(--brand);box-shadow:0 0 0 3px rgba(37,99,235,.15)}
+    nav a{font-size:14px;color:var(--muted);text-decoration:none;margin-left:16px}
+    nav a:hover{color:var(--brand)}
+    .banner{background:var(--card);border:1px dashed var(--border);border-left:4px solid var(--danger);padding:16px;margin:16px 0;border-radius:12px}
+    .banner strong{color:var(--danger)}
+    .grid{display:grid;grid-template-columns:1fr;gap:16px}
+    @media (min-width:720px){.grid{grid-template-columns:1fr 1fr}}
+    .card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:18px;box-shadow:0 6px 18px rgba(2,6,23,.05)}
+    .eyebrow{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.12em;margin:0 0 8px}
+    h1{font-size:28px;margin:0}
+    h2{font-size:18px;margin:0 0 8px}
+    .schedule{font-variant-numeric:tabular-nums}
+    .pill{display:inline-block;padding:4px 8px;border-radius:999px;background:#eef2ff;color:#3730a3;font-size:12px;font-weight:600}
+    .footer{margin:32px 0 16px;color:var(--muted);font-size:13px;text-align:center}
+    .button{display:inline-block;padding:10px 14px;border:1px solid var(--border);border-radius:10px;background:#fff;text-decoration:none;color:var(--fg)}
+    .button:hover{border-color:var(--brand);box-shadow:0 4px 12px rgba(37,99,235,.12)}
+    code{background:#f1f5f9;padding:2px 6px;border-radius:6px}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand"><span class="dot" aria-hidden="true"></span> Cafetería Campus</div>
+      <nav aria-label="Navegación principal">
+        <a href="#contacto">Contacto</a>
+        <a href="#ubicacion">Ubicación</a>
+      </nav>
+    </header>
+
+    <!-- EDITABLE: aviso -->
+    <section class="banner" aria-live="polite">
+      <strong id="aviso">Sin avisos por ahora.</strong>
+      <div style="font-size:14px;color:var(--muted)">Use este espacio para informar feriados o interrupciones temporales del servicio.</div>
+    </section>
+
+    <section class="grid" aria-label="Información general">
+      <article class="card">
+        <p class="eyebrow">Horario</p>
+        <h2 class="schedule" id="horario"><!-- EDITABLE: horario -->Lun–Vie 09:00–18:00</h2>
+        <p class="muted">Sábado y domingo cerrado</p>
+        <div style="margin-top:8px">
+          <span class="pill" title="Servicio en marcha">Operativo</span>
+        </div>
+      </article>
+
+      <article class="card" id="ubicacion">
+        <p class="eyebrow">Ubicación</p>
+        <h2>Edificio A, primer piso</h2>
+        <p class="muted">Frente a Biblioteca</p>
+        <a class="button" href="#contacto">Ir a contacto</a>
+      </article>
+    </section>
+
+    <section class="card" style="margin-top:16px" id="contacto">
+      <p class="eyebrow">Contacto</p>
+      <h2>¿Necesitas ayuda?</h2>
+      <p>Escríbenos a <a href="mailto:cafeteria@campus.cl">cafeteria@campus.cl</a> o acércate al mesón de atención.</p>
+      <p style="font-size:13px;color:var(--muted)">Última actualización: <span id="ultima">—</span></p>
+    </section>
+
+    <p class="footer">Demo para clase de Gestión del Cambio · Programación Segura</p>
+  </div>
+
+  <script>
+    // Marca de tiempo simple
+    const el = document.getElementById('ultima');
+    if (el){
+      const d = new Date();
+      const pad = (n)=> String(n).padStart(2,'0');
+      el.textContent = `${pad(d.getDate())}/${pad(d.getMonth()+1)}/${d.getFullYear()} ${pad(d.getHours())}:${pad(d.getMinutes())}`;
+    }
+  </script>
+</body>
+</html>
